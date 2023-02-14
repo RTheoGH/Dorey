@@ -1,20 +1,28 @@
-body{
-    background-color:azure;
+body {
+    background-color: white;
+    background-image: url("fond.jpg");
+    background-size: cover;
+    width: 100vw;
+    margin: 0;
 }
 
 .menu{
-    background-color:wheat;
-}
-
-.menu ul li{
-    list-style-type: none;
-}
-
-
-.TitreAccueil{
-    top:10%;
-    left:50%;
+    position: absolute;
+    font-size: 1em;
     text-align: center;
-    background-color: wheat;
-    
+    color: gold;
+    text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
+    opacity: 0.75;
+    background-color:whitesmoke;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding: 1em;
+    border-radius: 10em;
+}
+
+.menu ul{
+    font-size: 3vh;
+    display:contents;
+    list-style-type: none;
 }
