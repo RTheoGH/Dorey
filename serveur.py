@@ -16,17 +16,17 @@ class Tableau(db.Model):
 @app.route("/")
 def index():
     title='Accueil'
-    return render_template("index.html",title=title)
+    return render_template("index.html",title=title,page=title)
 
 @app.route("/listeTableaux")
 def listeTableaux():
     title='Gallerie'
-    return render_template("lTab.html",title=title)
+    return render_template("lTab.html",title=title,page=title)
 
 @app.route("/contact")
 def contact():
     title='Contact'
-    return render_template("contact.html",title=title)
+    return render_template("contact.html",title=title,page=title)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

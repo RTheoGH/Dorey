@@ -9,7 +9,14 @@
     <title>{{ title }}</title>
 </head>
     <body>
-    {% block main %}
-    {% endblock %}
+        <nav class="nav">
+            <ul>
+                <li {% if page=="Accueil" %} class="active" {% endif %}><a href="/">Accueil</a></li>
+                <li {% if page=="Gallerie" %} class="active" {% endif %}><a href="/listeTableaux">Gallerie</a></li>
+                <li {% if page=="Contact" %} class="active" {% endif %}><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+        {% block main %}
+        {% endblock %}
     </body>
 </html>

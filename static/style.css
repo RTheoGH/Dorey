@@ -30,36 +30,42 @@ body {
     background: gold;
 }
 
-.titreGallerie{
+.titre{
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     color: gold;
     text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
-    background-color: wheat;
+    background-color: whitesmoke;
     opacity: 0.75;
     padding: 0.5em;
+    width: 100%;
+    text-align: center;
 }
 
-.navGallerie{
+.nav{
     position: absolute;
     top: 50%;
     transform: translate(0%,-50%);
     
-    background-color: wheat;
+    background-color: whitesmoke;
     padding: 0.5em;
     opacity: 0.75;
 }
-.navGallerie ul{
+.nav ul{
     list-style-type: none;
 }
-.navGallerie ul a{
+.nav ul a{
     color: gold;
     text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
     font-size: 1.5em;
     text-decoration: none;
 }
-.navGallerie ul a:hover{
+.nav ul li:hover{
+    background-color: gold;
+}
+
+.active{
     background-color: gold;
 }
 
@@ -76,4 +82,13 @@ body {
 img{
     width: 5em;
     height: 5em;
+}
+.contact{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.info{
+    display: inline-block;
 }
