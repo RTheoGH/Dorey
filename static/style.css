@@ -26,3 +26,54 @@ body {
     display:contents;
     list-style-type: none;
 }
+.menu ul a:hover{
+    background: gold;
+}
+
+.titreGallerie{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    color: gold;
+    text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
+    background-color: wheat;
+    opacity: 0.75;
+    padding: 0.5em;
+}
+
+.navGallerie{
+    position: absolute;
+    top: 50%;
+    transform: translate(0%,-50%);
+    
+    background-color: wheat;
+    padding: 0.5em;
+    opacity: 0.75;
+}
+.navGallerie ul{
+    list-style-type: none;
+}
+.navGallerie ul a{
+    color: gold;
+    text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+.navGallerie ul a:hover{
+    background-color: gold;
+}
+
+.gallerie{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.gallerie table{
+    width: 50vw;
+}
+img{
+    width: 5em;
+    height: 5em;
+}

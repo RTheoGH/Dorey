@@ -1,1 +1,29 @@
 {% extends 'base.html' %}
+
+{% block main %}
+<div class="titreGallerie">
+    <h1>Gallerie de Tableaux</h1>
+</div>
+<div class="navGallerie">
+    {% include 'navigation.html' %}
+</div>
+<div class="gallerie">
+    <table>
+        <tbody>
+            <tr>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+            </tr>
+            <tr>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
+            </tr>
+        </tbody>
+        
+    </table>
+</div>
+{% endblock %}
