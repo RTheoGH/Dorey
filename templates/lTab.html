@@ -5,46 +5,13 @@
     <h1>Gallerie de Tableaux</h1>
 </div>
 <div class="gallerie">
-    <table>
-        <tbody>
-            <tr class="goldShadow nomTableau">
-                <td>Rock'n Roll!</td><td>Australia</td><td>Cabaret</td><td>Colorado</td>
-            </tr>
-            <tr>
-                <td><img name="rock" src="static/tableaux/RockNRoll.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/Australia.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/Cabaret.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/Colorado.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-            </tr>
-            <tr class="goldShadow nomTableau">
-                <td>Drôle de Zebres</td><td>Envolée Champêtre</td><td>Martin-Pecheur</td><td>Rosée Florale</td>
-            </tr>
-            <tr>
-                <td><img src="static/tableaux/DroleDeZebre.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/EnvoléeChampetre.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/Martin-Pecheur.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/RoséeFlorale.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-            </tr>
-            <tr class="goldShadow nomTableau">
-                <td>Bohemienne</td><td>Flaminco Party</td><td>Manga</td><td>Salagou</td>
-            </tr>
-            <tr>
-                <td><img src="static/tableaux/Bohemienne.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/FlamincoParty.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/Manga.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/Salagou.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-            </tr>
-            <tr class="goldShadow nomTableau">
-                <td>Symbiose</td><td>Vinyl</td><td>?</td><td>?</td>
-            </tr>
-            <tr>
-                <td><img src="static/tableaux/Symbiose.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/tableaux/Vinyl.jpg" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-                <td><img src="static/png.png" onmouseover="zoom(this)" onmouseout="dezoom(this)"></td>
-            </tr>
-        </tbody>
-        
-    </table>
+    <div class="grid">
+        {% for tableau in tab %}
+        <div class="tableau">
+            <p class="goldShadow nomTableau">{{tableau.nomT}}</p>
+            <a href="/tableau/{{tableau.idT}}"><img src={{tableau.imageT}}></a>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

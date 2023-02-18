@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="titre">
+    <h1>Tableau</h1>
+</div>
+<div class="centre">
+    <div>
+        <h1>{{tabS.nomT}}</h1>
+        <p style="text-align: center;">{{tabS.descT}}</p>
+    </div>
+    <div>
+        <img src="/{{tabS.imageT}}">
+    </div>
+</div>
+{% endblock %}
