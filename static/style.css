@@ -6,12 +6,15 @@ body {
     margin: 0;
 }
 
+.goldShadow{
+    color: gold;
+    text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em yellow;
+}
+
 .menu{
     position: absolute;
     font-size: 1em;
     text-align: center;
-    color: gold;
-    text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
     opacity: 0.75;
     background-color:whitesmoke;
     top:50%;
@@ -27,18 +30,16 @@ body {
     list-style-type: none;
 }
 .menu ul a:hover{
-    background: gold;
+    background: yellow;
 }
 
 .titre{
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    color: gold;
-    text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
     background-color: whitesmoke;
     opacity: 0.75;
-    padding: 0.5em;
+    /* padding: 0.5em; */
     width: 100%;
     text-align: center;
 }
@@ -47,7 +48,6 @@ body {
     position: absolute;
     top: 50%;
     transform: translate(0%,-50%);
-    
     background-color: whitesmoke;
     padding: 0.5em;
     opacity: 0.75;
@@ -56,8 +56,6 @@ body {
     list-style-type: none;
 }
 .nav ul a{
-    color: gold;
-    text-shadow: 1px 1px 2px black, 0 0 1em yellow, 0 0 0.2em green;
     font-size: 1.5em;
     text-decoration: none;
 }
@@ -75,13 +73,17 @@ body {
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
+    width: 80vw;
+    height: 75vh;
+    overflow-y: scroll;
+    border: 1px solid whitesmoke;
 }
-.gallerie table{
-    width: 50vw;
-}
+/* .gallerie table{
+    width: 80vw;
+} */
 img{
-    width: 5em;
-    height: 5em;
+    width: 10em;
+    height: 10em;
 }
 .contact{
     position: absolute;
@@ -92,3 +94,25 @@ img{
 .info{
     display: inline-block;
 }
+
+.nomTableau td{
+    font-size: 1.5em;
+    background-color:whitesmoke;
+    opacity:0.75;
+}
+/* 
+td{
+    border: 1px solid black;
+    background-color: whitesmoke;
+} */
+
+/* img{
+    width:auto;
+    transition: transform .1s;
+}
+
+img:hover{
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+} */

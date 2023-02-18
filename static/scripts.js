@@ -4,13 +4,13 @@ var hauteurImage;
 function zoom(image) {
     largeurImage = image.style.width;
     hauteurImage = image.style.height;
-    image.style.width = "10em";
-    image.style.height = "10em";
+    image.style.width = "120%";
+    image.style.height = "120%";
 }
     
 function dezoom(image) {
     largeurImage = image.style.width;
     hauteurImage = image.style.height;
-    image.style.width = "5em";
-    image.style.height = "5em";
+    image.style.width = "50%";
+    image.style.height = "50%";
 }
