@@ -6,11 +6,12 @@
 </div>
 <div class="centre">
     <div>
-        <h1>{{tabS.nomT}}</h1>
-        <p style="text-align: center;">{{tabS.descT}}</p>
+        <img class="encadre" src="/{{tabS.imageT}}">
     </div>
-    <div>
-        <img src="/{{tabS.imageT}}">
+    <div class="descTab">
+        <h1 class="titreTab">{{tabS.nomT}}</h1>
+        <p>{{tabS.descT}}</p>
+        <p>{{tabS.dateT}}</p>
     </div>
 </div>
 {% endblock %}
