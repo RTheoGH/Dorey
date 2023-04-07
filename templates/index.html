@@ -3,5 +3,10 @@
 {% block main %}
 <div class="menu">
     <h1>Bienvenue sur Dorey</h1>
+    {% if not session['idU']%}
+    <a href="/connexion"><input class="button" type="button" value="Connexion"/></a>
+    {% else %}
+    <p>Bonjour, {session['prenomU']} {session['prenomU']}</p>
+    {% endif %}
 </div>
 {% endblock %}

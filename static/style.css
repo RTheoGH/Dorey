@@ -21,7 +21,14 @@ body {
     left:50%;
     transform: translate(-50%,-50%);
     padding: 1em;
-    border-radius: 10em;
+    border-radius: 20px;
+}
+
+.connexion{
+    width: 20em;
+}
+.inscription{
+    width: 30em;
 }
 
 .menu ul{
@@ -110,4 +117,18 @@ img{
     transform: scale(1.5) translateY(15%);
     transition: 50ms ease;
     box-shadow: 12px 12px 20px black;
+}
+
+.button {
+    background-color: #adaf4c;
+    border-radius: 4px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

@@ -1,8 +1,9 @@
-from flask import Flask,render_template,redirect,url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projet.db'
 db.init_app(app)
 
@@ -15,6 +16,15 @@ class Tableau(db.Model):
 
     def __repr__(t):
         return 'Tableau %r'% t.idT
+
+class Utilisateur(db.Model):
+    mail = db.Column(db.String(40),primary_key=True)
+    nom = db.Column(db.String(30))
+    prenom = db.Column(db.String(30))
+    mdp = db.Column(db.String(30))
+
+    def __repr__(t):
+        return 'Utilisateur %r'% t.idU
 
 with app.app_context():
     db.drop_all()
@@ -40,6 +50,23 @@ with app.app_context():
 def index():
     title='Accueil'
     return render_template("index.html",title=title,page=title)
+
+@app.route("/connexion", methods=['GET','POST'])
+def connexion():
+    title='Connexion'
+    if request.method == 'POST':
+        return redirect("/")
+    else:
+        return render_template("connexion.html",title=title,page=title)
+
+@app.route("/inscription", methods=['GET','POST'])
+def inscription():
+    title="Nouveau compte"
+
+    if request.method == 'POST':
+        return redirect("/")
+    else:
+        return render_template("inscription.html",title=title,page=title)
 
 @app.route("/listeTableaux")
 def listeTableaux():

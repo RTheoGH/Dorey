@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="menu connexion">
+    <h1>Connexion</h1>
+    <form action="/connexion" method="POST">
+        <p><input type="text" style="width:15em;text-align:center;" nom="mail" placeholder="Adresse mail"/></p>
+        <p><input type="text" style="width:15em;text-align:center;" nom="mdp" placeholder="Mot de passe"/></p>
+        <input class="button" type="submit" value="Connexion"/>
+    </form>
+    <p><a href="inscription">Créer un compte</a></p>
+</div>
+{% endblock %}
