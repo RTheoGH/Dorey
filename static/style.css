@@ -75,7 +75,7 @@ body {
 
 .gallerie{
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
@@ -83,34 +83,49 @@ body {
     height: 75vh;
     overflow-y: auto;
     overflow-x: hidden;
-    border: 1px solid whitesmoke;
+    border: 5px solid white;
     background-color:  #6f6f6f;
 }
+
 .grid{
     display:grid;
     grid-template-columns: repeat(4,20vw);
 }
+
 .centre{
     position: absolute;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    background-color:  #6f6f6f;
+    background-color: #6f6f6f;
     text-align: center;
-    display: flex;
+    padding: 1em;
+    border: 10px solid gold;
+    border-radius: 1em;
 }
-.nomTableau td{
-    font-size: 1.5em;
-    background-color:whitesmoke;
-    opacity:0.75;
+.centre img{
+    width: 25%;
 }
 
-img{
+.descTab{
+    margin-top: 1em;
+    text-align: center;
+    border: 5px solid white;
+    border-radius: 1em;
+    background-color: whitesmoke;
+}
+
+.titreTab{
+    font-family: 'Dancing Script', cursive;
+}
+
+.encadre{
     border: 10px solid white;
     width: 50%;
     box-shadow: 3px 3px 5px black;
     transition: 50ms ease;
 }
+
 .gallerie img:hover{
     -ms-transform: scale(1.5);
     -webkit-transform: scale(1.5);
