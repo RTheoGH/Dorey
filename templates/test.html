@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="menu ">
+    <h1>Utilisateurs</h1>
+    <table>
+        <tr style="background-color:lightgray">
+            <td>Mail</td>
+            <td>Nom</td>
+            <td>Prénom</td>
+            <td>MDP</td>
+        </tr>
+    {% for u in utilisateurs %}
+        <tr>
+            <td>{{u.mail}}</td>
+            <td>{{u.nom}}</td>
+            <td>{{u.prenom}}</td>
+            <td>{{u.mdp}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

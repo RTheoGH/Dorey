@@ -53,19 +53,55 @@ def index():
 @app.route("/connexion", methods=['GET','POST'])
 def connexion():
     title='Connexion'
+
     if request.method == 'POST':
-        return redirect("/")
+        connexion_utilisateur = db.session.query(Utilisateur).filter(Utilisateur.mail == request.form['mail']).first()
+        if connexion_utilisateur is None:
+            flash('Mail invalide')
+            return redirect("/connexion")
+        if connexion_utilisateur.mdp == request.form['mdp']:
+            session['mail'] = request.form['mail']
+            session['nom'] = connexion_utilisateur.nom
+            session['prenom'] = connexion_utilisateur.prenom
+        else:
+            flash('Mot de passe invalide')             
+            return redirect('/connexion')  
+        return redirect('/')              
     else:
         return render_template("connexion.html",title=title,page=title)
+
+@app.route("/deconnexion")
+def deconnexion():
+    session.pop('mail',None)
+    return redirect('/')
 
 @app.route("/inscription", methods=['GET','POST'])
 def inscription():
     title="Nouveau compte"
 
     if request.method == 'POST':
-        return redirect("/")
+        mail = request.form['mail']
+        nom = request.form['nom']
+        prenom = request.form['prenom']
+        mdp = request.form['mdp']
+        # print(mail,nom,prenom,mdp)
+        nouveau_utilisateur = Utilisateur(mail=mail,nom=nom,prenom=prenom,mdp=mdp)
+
+        try:
+            db.session.add(nouveau_utilisateur)
+            db.session.commit()
+            print("L'utilisateur a été ajouté avec succès")
+            return redirect("/")
+        except:
+            return 'Erreur lors de l\'ajout de l\'utilisateur'
     else:
         return render_template("inscription.html",title=title,page=title)
+
+@app.route("/test")
+def test():
+    title='ADMIN'
+    tous_les_utilisateurs = db.session.query(Utilisateur).all()
+    return render_template("test.html",title=title,page=title,utilisateurs=tous_les_utilisateurs)
 
 @app.route("/listeTableaux")
 def listeTableaux():

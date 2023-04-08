@@ -3,12 +3,13 @@
 {% block main %}
 <div class="menu">
     <h1 class="titreTab">Bienvenue sur Dorey</h1>
-    {% if not session['idU']%}
+    {% if not session['mail'] %}
     <a href="/connexion"><input class="button" type="button" value="Connexion"/></a>
     {% else %}
-    <p>Bonjour, {session['prenomU']} {session['prenomU']}</p>
+    <p class="titreTab">Bonjour, {{session['prenom']}} {{session['nom']}}</p>
     <p>Pour consulter les tableaux -> Gallerie </p>
     <p>Pour me contacter -> Contact </p>
+    <a href="/deconnexion"><input class="button" type="button" value="Deconnexion"/></a>
     {% endif %}
 </div>
 {% endblock %}
