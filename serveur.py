@@ -22,6 +22,7 @@ class Utilisateur(db.Model):
     nom = db.Column(db.String(30))
     prenom = db.Column(db.String(30))
     mdp = db.Column(db.String(30))
+    pdp = db.Column(db.String(200))
 
     def __repr__(t):
         return 'Utilisateur %r'% t.idU
@@ -63,9 +64,12 @@ def connexion():
             session['mail'] = request.form['mail']
             session['nom'] = connexion_utilisateur.nom
             session['prenom'] = connexion_utilisateur.prenom
+            session['image'] = connexion_utilisateur.pdp
+            print("hein")
         else:
             flash('Mot de passe invalide')             
-            return redirect('/connexion')  
+            return redirect('/connexion') 
+        print("uwu ?")
         return redirect('/')              
     else:
         return render_template("connexion.html",title=title,page=title)
@@ -84,8 +88,10 @@ def inscription():
         nom = request.form['nom']
         prenom = request.form['prenom']
         mdp = request.form['mdp']
+        pdp = request.form['pp']
+        print(pdp)
         # print(mail,nom,prenom,mdp)
-        nouveau_utilisateur = Utilisateur(mail=mail,nom=nom,prenom=prenom,mdp=mdp)
+        nouveau_utilisateur = Utilisateur(mail=mail,nom=nom,prenom=prenom,mdp=mdp,pdp=pdp)
 
         try:
             db.session.add(nouveau_utilisateur)

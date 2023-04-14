@@ -2,12 +2,12 @@
 
 {% block main %}
 <div class="menu connexion">
-    <h1>Connexion</h1>
+    <h1 class="police">Connexion</h1>
     <form action="/connexion" method="POST">
-        <p><input type="text" style="width:15em;text-align:center;" name="mail" placeholder="Adresse mail"/></p>
-        <p><input type="text" style="width:15em;text-align:center;" name="mdp" placeholder="Mot de passe"/></p>
-        <input class="button" type="submit" value="Connexion"/>
+        <p class="police">Adresse Mail <br/><input type="text" style="width:15em;text-align:center;" name="mail"/>
+        <p class="police">Mot de passe <br/><input type="password" style="width:15em;text-align:center;" name="mdp"/></p>
+        <input class="policeButton button" type="submit" value="Connexion"/>
     </form>
-    <p><a href="inscription">Créer un compte</a></p>
+    <p><a class="policeButton" href="inscription">Créer un compte</a></p>
 </div>
 {% endblock %}

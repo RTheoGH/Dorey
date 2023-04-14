@@ -2,14 +2,13 @@
 
 {% block main %}
 <div class="menu">
-    <h1 class="titreTab">Bienvenue sur Dorey</h1>
+    <h1 class="police">Bienvenue sur Dorey</h1>
     {% if not session['mail'] %}
-    <a href="/connexion"><input class="button" type="button" value="Connexion"/></a>
+    <a href="/connexion"><input class="policeButton button" type="button" value="Connexion"/></a>
     {% else %}
-    <p class="titreTab">Bonjour, {{session['prenom']}} {{session['nom']}}</p>
-    <p>Pour consulter les tableaux -> Gallerie </p>
-    <p>Pour me contacter -> Contact </p>
-    <a href="/deconnexion"><input class="button" type="button" value="Deconnexion"/></a>
+    <p class="police">Bonjour, {{session['prenom']}} {{session['nom']}}</p>
+    <p><img class="pp" src="{{session['image']}}"/></p>
+    <a href="/deconnexion"><input class="policeButton button" type="button" value="Deconnexion"/></a>
     {% endif %}
 </div>
 {% endblock %}

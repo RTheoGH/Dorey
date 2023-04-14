@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Satisfy&display=swap" rel="stylesheet">
     <link href="/static/style.css" rel="stylesheet">
     <script src="/static/scripts.js"></script>
     <title>{{ title }}</title>
@@ -14,9 +14,9 @@
     <body>
         <nav class="goldShadow nav">
             <ul>
-                <li {% if page=="Accueil" or page=="Connexion" or page=="Nouveau compte"  %} class="active" {% endif %}><a href="/">Accueil</a></li>
-                <li {% if page=="Gallerie" %} class="active" {% endif %}><a href="/listeTableaux">Gallerie</a></li>
-                <li {% if page=="Contact" %} class="active" {% endif %}><a href="/contact">Contact</a></li>
+                <li {% if page=="Accueil" or page=="Connexion" or page=="Nouveau compte" %} class="active" {% endif %}><a class="police" href="/">Accueil</a></li>
+                <li {% if page=="Gallerie" %} class="active" {% endif %}><a class="police" href="/listeTableaux">Gallerie</a></li>
+                <li {% if page=="Contact" %} class="active" {% endif %}><a class="police" href="/contact">Contact</a></li>
             </ul>
         </nav>
         {% block main %}

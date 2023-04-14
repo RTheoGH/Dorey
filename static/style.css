@@ -1,9 +1,10 @@
 body {
-    background-color: white;
-    background-image: url("fond.jpg");
-    background-size: cover;
-    width: 100vw;
-    margin: 0;
+    background: rgb(254,212,78);
+    background: linear-gradient(45deg, rgba(254,212,78,1) 11%, rgba(252,220,146,1) 46%, rgba(255,220,119,1) 87%);
+    /* background-image: url("https://cdn.pixabay.com/photo/2021/12/25/19/28/fractal-6893759_960_720.jpg"); */
+    /* background-size: cover; */
+    /* width: 100vw; */
+    /* margin: 0; */
 }
 
 .goldShadow{
@@ -22,6 +23,7 @@ body {
     transform: translate(-50%,-50%);
     padding: 1em;
     border-radius: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .connexion{
@@ -29,6 +31,40 @@ body {
 }
 .inscription{
     width: 30em;
+}
+
+.flex{
+    display: flex;
+}
+
+.milieu{
+    justify-content: center;
+}
+
+.gauche{
+    margin-right: 1em;
+}
+
+.droite{
+    margin-left: 1em;
+}
+
+.grid3x3{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.image{
+    width:3em;
+    height:3em;
+    margin:4px;
+    border: 1px solid black;
+}
+
+.pp{
+    width:5em;
+    height:5em;
+    border:2px solid black;
 }
 
 .menu ul{
@@ -57,6 +93,7 @@ body {
     background-color: whitesmoke;
     padding: 0.5em;
     opacity: 0.75;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .nav ul{
     list-style-type: none;
@@ -85,6 +122,7 @@ body {
     overflow-x: hidden;
     border: 5px solid white;
     background-color:  #6f6f6f;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .grid{
@@ -102,6 +140,7 @@ body {
     padding: 1em;
     border: 10px solid gold;
     border-radius: 1em;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .centre img{
     width: 25%;
@@ -115,35 +154,43 @@ body {
     background-color: whitesmoke;
 }
 
-.titreTab{
-    font-family: 'Dancing Script', cursive;
+.police{
+    font-family: 'Satisfy', cursive;
+}
+
+.policeButton{
+    font-family: 'Orbitron', sans-serif;
 }
 
 .encadre{
     border: 10px solid white;
     width: 50%;
     box-shadow: 3px 3px 5px black;
-    transition: 50ms ease;
+    transition: 500ms ease;
 }
 
 .gallerie img:hover{
     -ms-transform: scale(1.5);
     -webkit-transform: scale(1.5);
     transform: scale(1.5) translateY(15%);
-    transition: 50ms ease;
+    transition: 500ms ease;
     box-shadow: 12px 12px 20px black;
 }
 
 .button {
-    background-color: #adaf4c;
-    border-radius: 4px;
-    color: white;
+    font-weight: bold;
+    color:black;
+    background-color: #ffc961;
+    border: none;
+    border-radius: .5em;
     padding: 15px 32px;
     text-align: center;
-    font-size: 16px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    font-size: 1em;
+    box-shadow: 0 .25em 1em #c698669e;
+    transition: 0.75s ease;
 }
 
 .button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 .4em 1em #e3b45d;
+    transition: 0.75s ease;
 }

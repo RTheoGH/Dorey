@@ -2,13 +2,34 @@
 
 {% block main %}
 <div class="menu inscription">
-    <h1>Création d'un compte</h1>
+    <h1 class="police">Création d'un compte</h1>
     <form action="/inscription" method="POST">
-        <p><input type="text" style="width:15em;text-align:center;" name="mail" placeholder="Adresse mail"/></p>
-        <p><input type="text" style="width:15em;text-align:center;" name="nom" placeholder="Nom"/>
-            <input type="text" style="width:15em;text-align:center;" name="prenom" placeholder="Prénom"/></p>
-        <p><input type="text" style="width:15em;text-align:center;" name="mdp" placeholder="Mot de passe"/></p>
-        <input class="button" type="submit" value="Créer un compte"/>
+        <div class="flex milieu">
+            <div class="gauche">
+                <p class="police">Photo de profil <br/>
+                    <img class="pp" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"/>
+                    <input class="pp" type="hidden" name="pp" value="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                </p>
+                <div class="grid3x3">
+                    <div><img id="pp1" onclick="imageDeProfil('pp1')" class="image" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"></div>
+                    <div><img id="pp2" onclick="imageDeProfil('pp2')" class="image" src="https://cdn.pixabay.com/photo/2017/05/13/17/31/fruit-2310212_960_720.jpg"></div>
+                    <div><img id="pp3" onclick="imageDeProfil('pp3')" class="image" src="https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png"></div>
+                    <div><img id="pp4" onclick="imageDeProfil('pp4')" class="image" src="https://cdn.pixabay.com/photo/2019/06/13/13/06/monster-4271569_960_720.png"></div>
+                    <div><img id="pp5" onclick="imageDeProfil('pp5')" class="image" src="https://cdn.pixabay.com/photo/2021/03/31/03/12/cat-6138366_960_720.jpg"></div>
+                    <div><img id="pp6" onclick="imageDeProfil('pp6')" class="image" src="https://cdn.pixabay.com/photo/2016/10/30/18/01/apple-1783882_960_720.png"></div>
+                    <div><img id="pp7" onclick="imageDeProfil('pp7')" class="image" src="https://cdn.pixabay.com/photo/2022/09/13/18/04/art-7452561_960_720.jpg"></div>
+                    <div><img id="pp8" onclick="imageDeProfil('pp8')" class="image" src="https://cdn.pixabay.com/photo/2022/08/03/08/57/van-gogh-7362188_960_720.jpg"></div>
+                    <div><img id="pp9" onclick="imageDeProfil('pp9')" class="image" src="https://cdn.pixabay.com/photo/2018/05/01/07/47/animal-3364909_960_720.png"></div>
+                </div>
+            </div>
+            <div class="droite">
+                <p class="police">Adresse Mail <br/><input type="text" style="width:15em;text-align:center;" name="mail"/></p>
+                <p class="police">Nom <br/><input type="text" style="width:15em;text-align:center;" name="nom"/></p>
+                <p class="police">Prénom <br/><input type="text" style="width:15em;text-align:center;" name="prenom"/></p>
+                <p class="police">Mot de passe <br/><input type="password" style="width:15em;text-align:center;" name="mdp"/></p>
+            </div>
+        </div>
+        <input class="policeButton button" type="submit" value="Créer un compte"/>
     </form>
 </div>
 {% endblock %}

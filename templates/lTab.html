@@ -2,13 +2,13 @@
 
 {% block main %}
 <div class="titre">
-    <h1>Gallerie de Tableaux</h1>
+    <h1 class="police">Gallerie de Tableaux</h1>
 </div>
 <div class="gallerie">
     <div class="grid">
         {% for tableau in tab %}
         <div class="tableau">
-            <p class="goldShadow nomTableau">{{tableau.nomT}}</p>
+            <p class="goldShadow nomTableau police">{{tableau.nomT}}</p>
             <a href="/tableau/{{tableau.idT}}"><img class="encadre" src={{tableau.imageT}}></a>
         </div>
         {% endfor %}
