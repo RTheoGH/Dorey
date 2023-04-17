@@ -58,7 +58,7 @@ def connexion():
     if request.method == 'POST':
         connexion_utilisateur = db.session.query(Utilisateur).filter(Utilisateur.mail == request.form['mail']).first()
         if connexion_utilisateur is None:
-            flash('Mail invalide')
+            flash('Adresse mail invalide')
             return redirect("/connexion")
         if connexion_utilisateur.mdp == request.form['mdp']:
             session['mail'] = request.form['mail']
@@ -67,7 +67,7 @@ def connexion():
             session['image'] = connexion_utilisateur.pdp
             print("hein")
         else:
-            flash('Mot de passe invalide')             
+            flash('Mot de passe incorrect')          
             return redirect('/connexion') 
         print("uwu ?")
         return redirect('/')              

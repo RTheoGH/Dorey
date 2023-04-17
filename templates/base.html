@@ -8,18 +8,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Satisfy&display=swap" rel="stylesheet">
     <link href="/static/style.css" rel="stylesheet">
+    <link href="/static/navigation.css" rel="stylesheet">
     <script src="/static/scripts.js"></script>
-    <title>{{ title }}</title>
+    <title>{{title}}</title>
 </head>
-    <body>
-        <nav class="goldShadow nav">
-            <ul>
-                <li {% if page=="Accueil" or page=="Connexion" or page=="Nouveau compte" %} class="active" {% endif %}><a class="police" href="/">Accueil</a></li>
-                <li {% if page=="Gallerie" %} class="active" {% endif %}><a class="police" href="/listeTableaux">Gallerie</a></li>
-                <li {% if page=="Contact" %} class="active" {% endif %}><a class="police" href="/contact">Contact</a></li>
-            </ul>
-        </nav>
-        {% block main %}
-        {% endblock %}
-    </body>
+
+<body>
+    <nav>
+        <ul>
+            <li {% if page=="Accueil" or page=="Connexion" or page=="Nouveau compte" %} class="active" {% endif %}><a class="police" href="/">Accueil</a></li>
+            <li {% if page=="Gallerie" %} class="active" {% endif %}><a class="police" href="/listeTableaux">Gallerie</a></li>
+            <li {% if page=="Contact" %} class="active" {% endif %}><a class="police" href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    {% block main %}
+    {% endblock %}
+</body>
 </html>

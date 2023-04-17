@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="menu connexion">
+<div class="titre">
     <h1 class="police">Connexion</h1>
+</div>
+<div class="menu connexion">
+    <!-- <h1 class="police">Connexion</h1> -->
+    {% include 'flash.html' %}
     <form action="/connexion" method="POST">
-        <p class="police">Adresse Mail <br/><input type="text" style="width:15em;text-align:center;" name="mail"/>
-        <p class="police">Mot de passe <br/><input type="password" style="width:15em;text-align:center;" name="mdp"/></p>
-        <input class="policeButton button" type="submit" value="Connexion"/>
+        <p class="police">Adresse Mail <br/><input type="text" style="width:15em;text-align:center;" name="mail" required/>
+        <p class="police">Mot de passe <br/><input type="password" style="width:15em;text-align:center;" name="mdp" required/></p>
+        <input class="button" type="submit" value="Connexion"/>
     </form>
-    <p><a class="policeButton" href="inscription">Créer un compte</a></p>
+    <p><a href="inscription">Créer un compte</a></p>
 </div>
 {% endblock %}

@@ -14,7 +14,7 @@ body {
 
 .menu{
     position: absolute;
-    font-size: 1.5em;
+    font-size: 1.25em;
     text-align: center;
     opacity: 0.75;
     background-color:whitesmoke;
@@ -50,6 +50,7 @@ body {
 }
 
 .grid3x3{
+    margin-top: -1em;
     display:grid;
     grid-template-columns: repeat(3,1fr);
 }
@@ -67,14 +68,14 @@ body {
     border:2px solid black;
 }
 
-.menu ul{
+/* .menu ul{
     font-size: 3vh;
     display:contents;
     list-style-type: none;
 }
 .menu ul a:hover{
     background: yellow;
-}
+} */
 
 .titre{
     position: absolute;
@@ -86,24 +87,29 @@ body {
     text-align: center;
 }
 
-.nav{
-    position: absolute;
-    top: 50%;
-    transform: translate(0%,-50%);
-    background-color: whitesmoke;
-    padding: 0.5em;
-    opacity: 0.75;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.nav ul{
+nav ul{
     list-style-type: none;
+    /* margin: 0;
+    padding: 0; */
+    position: absolute;
+    top:50%;
+    transform:translate(-50%,-50%);
+    /* background-color: whitesmoke; */
+    /* font: menu; */
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
 }
-.nav ul a{
-    font-size: 1.5em;
+nav ul li a {
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    transition: transform 0.5s;
+    padding: 15px 10px;
     text-decoration: none;
+    border: 1px solid black;
 }
-.nav ul li:hover{
+nav ul li a:hover {
     background-color: gold;
+    /* transform: scale(1.5); */
 }
 
 .active{
@@ -180,17 +186,24 @@ body {
 .button {
     font-weight: bold;
     color:black;
-    background-color: #ffc961;
+    background-color: #ffc861d2;
     border: none;
     border-radius: .5em;
-    padding: 15px 32px;
+    padding: 10px 22px;
     text-align: center;
-    font-size: 1em;
+    font-size: 0.75em;
     box-shadow: 0 .25em 1em #c698669e;
     transition: 0.75s ease;
 }
 
 .button:hover {
+    background-color: #ffc961;
     box-shadow: 0 .4em 1em #e3b45d;
     transition: 0.75s ease;
+}
+
+.flashes {
+    color: red;
+    font-weight: bold;
+    font-family: 'Satisfy', cursive;
 }

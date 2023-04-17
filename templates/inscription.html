@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="menu inscription">
+<div class="titre">
     <h1 class="police">Création d'un compte</h1>
+</div>
+<div class="menu inscription">
+    <!-- <h1 class="police">Création d'un compte</h1> -->
     <form action="/inscription" method="POST">
         <div class="flex milieu">
             <div class="gauche">
@@ -22,14 +25,16 @@
                     <div><img id="pp9" onclick="imageDeProfil('pp9')" class="image" src="https://cdn.pixabay.com/photo/2018/05/01/07/47/animal-3364909_960_720.png"></div>
                 </div>
             </div>
+            <div style="border:1px solid black;margin:.5em"></div>
             <div class="droite">
-                <p class="police">Adresse Mail <br/><input type="text" style="width:15em;text-align:center;" name="mail"/></p>
-                <p class="police">Nom <br/><input type="text" style="width:15em;text-align:center;" name="nom"/></p>
-                <p class="police">Prénom <br/><input type="text" style="width:15em;text-align:center;" name="prenom"/></p>
-                <p class="police">Mot de passe <br/><input type="password" style="width:15em;text-align:center;" name="mdp"/></p>
+                <p class="police" style="margin-bottom:1.5em;">Informations personnelles</p>
+                <p class="police">Adresse Mail <br/><input type="text" style="width:15em;text-align:center;" name="mail" required/></p>
+                <p class="police">Nom <br/><input type="text" style="width:15em;text-align:center;" name="nom" required/></p>
+                <p class="police">Prénom <br/><input type="text" style="width:15em;text-align:center;" name="prenom" required/></p>
+                <p class="police">Mot de passe <br/><input type="password" style="width:15em;text-align:center;" name="mdp" required/></p>
             </div>
         </div>
-        <input class="policeButton button" type="submit" value="Créer un compte"/>
+        <input class="button" type="submit" value="Créer un compte"/>
     </form>
 </div>
 {% endblock %}
