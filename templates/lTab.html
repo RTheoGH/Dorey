@@ -4,6 +4,17 @@
 <div class="titre">
     <h1 class="police">Gallerie de Tableaux</h1>
 </div>
+{% if session['mail'] %}
+    <div class="flex miniProfil">
+        <div>
+            <img class="pp" style="width:4em;height:4em;" src="{{session['image']}}"/>
+        </div>
+        <div style="margin-top:-7px;margin-left:10px;">
+            <p class="police">{{session['nom']}}</p>
+            <p class="police" style="margin-top:-10px;">{{session['prenom']}}</p>
+        </div>
+    </div>
+{% endif %}
 <div class="gallerie">
     <div class="grid">
         {% for tableau in tab %}

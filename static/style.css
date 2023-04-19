@@ -1,6 +1,7 @@
 body {
     background: rgb(254,212,78);
     background: linear-gradient(45deg, rgba(254,212,78,1) 11%, rgba(252,220,146,1) 46%, rgba(255,220,119,1) 87%);
+    margin-top:1em;
 }
 
 .goldShadow{
@@ -82,6 +83,13 @@ body {
     opacity: 0.75;
     width: 100%;
     text-align: center;
+}
+
+.miniProfil{
+    position: absolute;
+    left: 2%;
+    top: 3.5%;
+    /* border: 1px solid black; */
 }
 
 nav{

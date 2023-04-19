@@ -6,8 +6,13 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
 ## Prochainement :
-- profil en haut à gauche sur les autres pages ?
-- liste d'envie
-    - si connecté : peut ajouter à sa liste
-- sécurisation mot de passe
-- page de profil
+- profil en haut à gauche sur les autres pages ? (50%)
+- liste d'envie :
+    - page (75%)
+    - si connecté : peut ajouter à sa liste (0%)
+    - active (0%)
+- sécurisation mot de passe (0%)
+- page de profil :
+    - page (1%)
+    - si connecté (0%)
+    - modification profil (0%)

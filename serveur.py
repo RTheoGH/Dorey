@@ -27,24 +27,28 @@ class Utilisateur(db.Model):
     def __repr__(t):
         return 'Utilisateur %r'% t.idU
 
-with app.app_context():
-    db.drop_all()
-    db.create_all()
-    db.session.add(Tableau(idT=1,imageT="static/tableaux/Australia.jpg",nomT="Australia",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=2,imageT="static/tableaux/Bohemienne.jpg",nomT="Bohemienne",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=3,imageT="static/tableaux/Cabaret.jpg",nomT="Cabaret",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=4,imageT="static/tableaux/Colorado.jpg",nomT="Colorado",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=5,imageT="static/tableaux/DroleDeZebre.jpg",nomT="Drôle de Zebres",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=6,imageT="static/tableaux/EnvoléeChampetre.jpg",nomT="Envolée Champetre",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=7,imageT="static/tableaux/FlamincoParty.jpg",nomT="Flaminco Party",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=8,imageT="static/tableaux/Manga.jpg",nomT="Manga",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=9,imageT="static/tableaux/Martin-Pecheur.jpg",nomT="Martin-Pecheur",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=10,imageT="static/tableaux/RockNRoll.jpg",nomT="Rock'n Roll",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=11,imageT="static/tableaux/RoséeFlorale.jpg",nomT="Rosée Florale",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=12,imageT="static/tableaux/Salagou.jpg",nomT="Salagou",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=13,imageT="static/tableaux/Symbiose.jpg",nomT="Symbiose",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.add(Tableau(idT=14,imageT="static/tableaux/Vinyl.jpg",nomT="Vinyl",descT="Description du tableau",dateT="01/01/2020"))
-    db.session.commit()
+class Liste(db.Model):
+    cleUtilisateur = db.Column(db.String(40),db.ForeignKey(Utilisateur.mail),primary_key=True)
+    cleTableau = db.Column(db.Integer,db.ForeignKey(Tableau.idT),primary_key=True)
+
+# with app.app_context():
+#     db.drop_all()
+#     db.create_all()
+#     db.session.add(Tableau(idT=1,imageT="static/tableaux/Australia.jpg",nomT="Australia",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=2,imageT="static/tableaux/Bohemienne.jpg",nomT="Bohemienne",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=3,imageT="static/tableaux/Cabaret.jpg",nomT="Cabaret",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=4,imageT="static/tableaux/Colorado.jpg",nomT="Colorado",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=5,imageT="static/tableaux/DroleDeZebre.jpg",nomT="Drôle de Zebres",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=6,imageT="static/tableaux/EnvoléeChampetre.jpg",nomT="Envolée Champetre",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=7,imageT="static/tableaux/FlamincoParty.jpg",nomT="Flaminco Party",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=8,imageT="static/tableaux/Manga.jpg",nomT="Manga",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=9,imageT="static/tableaux/Martin-Pecheur.jpg",nomT="Martin-Pecheur",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=10,imageT="static/tableaux/RockNRoll.jpg",nomT="Rock'n Roll",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=11,imageT="static/tableaux/RoséeFlorale.jpg",nomT="Rosée Florale",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=12,imageT="static/tableaux/Salagou.jpg",nomT="Salagou",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=13,imageT="static/tableaux/Symbiose.jpg",nomT="Symbiose",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.add(Tableau(idT=14,imageT="static/tableaux/Vinyl.jpg",nomT="Vinyl",descT="Description du tableau",dateT="01/01/2020"))
+#     db.session.commit()
 
 @app.route("/")
 def index():
@@ -121,6 +125,29 @@ def tableau(id):
     title='Gallerie'
     tabSelect=db.session.query(Tableau).filter(Tableau.idT==id).first()
     return render_template("tableau.html",title=title,page=title,tabS=tabSelect)
+
+@app.route("/ajoutTableau/<int:id>")
+def ajoutTab(id):
+    tableau_a_ajouter = db.session.query(Tableau).filter(Tableau.idT == id).first()
+    print(tableau_a_ajouter.idT)
+
+    try:
+        db.session.add(Liste(cleUtilisateur=session['mail'],cleTableau=tableau_a_ajouter.idT))
+        db.session.commit()
+        print("wa")
+        return redirect("/liste")
+    except:
+        flash("Tableau déjà dans votre liste")
+        return redirect("/tableau/"+str(id))
+
+@app.route("/liste")
+def liste():
+    liste_de_utilisateur = db.session.query(Tableau).join(Liste).filter(Liste.cleTableau == Tableau.idT).filter(Liste.cleUtilisateur == session['mail']).all()
+    return render_template("liste.html",tab=liste_de_utilisateur)
+
+@app.route("/profil")
+def profil():
+    return "pas encore fait"
 
 @app.route("/contact")
 def contact():

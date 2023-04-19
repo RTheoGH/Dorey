@@ -2,7 +2,7 @@
 
 {% block main %}
 <div class="titre">
-    <h1 class="police">Tableau</h1>
+    <h1 class="police">Ma liste</h1>
 </div>
 {% if session['mail'] %}
     <div class="flex miniProfil">
@@ -15,16 +15,14 @@
         </div>
     </div>
 {% endif %}
-<div class="centre">
-    {% include 'flash.html' %}
-    <div>
-        <img class="encadre" src="/{{tabS.imageT}}">
-    </div>
-    <div class="descTab">
-        <h1 class="police">{{tabS.nomT}}</h1>
-        <p>{{tabS.descT}}</p>
-        <p>{{tabS.dateT}}</p>
-        <a href="/ajoutTableau/{{tabS.idT}}"><input class="button" type="button" value="Ajouter à ma liste"/></a>
+<div class="gallerie">
+    <div class="grid">
+        {% for tableau in tab %}
+        <div class="tableau">
+            <p class="goldShadow nomTableau police">{{tableau.nomT}}</p>
+            <a href="/tableau/{{tableau.idT}}"><img class="encadre" src={{tableau.imageT}}></a>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
