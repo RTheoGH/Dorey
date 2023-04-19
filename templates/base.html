@@ -16,9 +16,9 @@
 <body>
     <nav>
         <ul>
-            <li {% if page=="Accueil" or page=="Connexion" or page=="Nouveau compte" %} class="active" {% endif %}><a class="police" href="/">Accueil</a></li>
-            <li {% if page=="Gallerie" %} class="active" {% endif %}><a class="police" href="/listeTableaux">Gallerie</a></li>
-            <li {% if page=="Contact" %} class="active" {% endif %}><a class="police" href="/contact">Contact</a></li>
+            <li><a class="police {% if page=='Accueil' or page=='Connexion' or page=='Nouveau compte' %} active {% endif %}" href="/">Accueil</a></li>
+            <li><a class="police {% if page=='Gallerie' %} active {% endif %}" href="/listeTableaux">Gallerie</a></li>
+            <li><a class="police {% if page=='Contact' %} active {% endif %}" href="/contact">Contact</a></li>
         </ul>
     </nav>
     {% block main %}
