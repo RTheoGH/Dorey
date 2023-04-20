@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="titre">
+    <h1 class="police">Profil</h1>
+</div>
+<div class="menu">
+    {% include 'flash.html' %}
+    <div class="flex milieu">
+        <div class="gauche">
+            <img class="pp" style="margin-top:0.5em;height:8em;width:8em;" src="{{profil.pdp}}"/>
+        </div>
+        <div style="border:1px solid black"></div>
+        <div class="droite">
+            <p class="police" style="text-align:left;">Mail : {{profil.mail}}</p>
+            <p class="police" style="text-align:left;">Nom : {{profil.nom}}</p>
+            <p class="police" style="text-align:left;">Prenom : {{profil.prenom}}</p>
+            <p class="police" style="text-align:left;">Mot de passe : **********</p>
+        </div>
+    </div>
+    <br/>
+    <a href="/modifier-profil/{{profil.mail}}"><input class="button" type="button" value="Modifier mon profil"/></a>
+    <a href="/modifier-mdp/{{profil.mail}}"><input class="button" type="button" value="Modifier mon mot de passe"/></a>
+</div>
+{% endblock %}

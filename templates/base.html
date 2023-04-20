@@ -18,8 +18,8 @@
         <ul>
             <li><a class="police {% if page=='Accueil' or page=='Connexion' or page=='Nouveau compte' %} active {% endif %}" href="/">Accueil</a></li>
             <li><a class="police {% if page=='Gallerie' %} active {% endif %}" href="/listeTableaux">Gallerie</a></li>
-            <li><a class="police" href="/liste">Ma liste</a></li>
-            <li><a class="police" href="/profil">Profil</a></li>
+            <li><a class="police {% if page=='Ma liste' %} active {% endif %}" href="/liste">Ma liste</a></li>
+            <li><a class="police {% if page=='Profil' or page=='ModificationP' or page=='ModificationMDP' %} active {% endif %}" href="/profil">Profil</a></li>
             <li><a class="police {% if page=='Contact' %} active {% endif %}" href="/contact">Contact</a></li>
         </ul>
     </nav>

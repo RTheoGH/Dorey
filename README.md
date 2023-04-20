@@ -10,9 +10,10 @@
 - liste d'envie :
     - page (75%)
     - si connecté : peut ajouter à sa liste (0%)
-    - active (0%)
-- sécurisation mot de passe (0%)
+    - active (100%)
+- sécurisation mot de passe (werkzeug) (0%)
 - page de profil :
-    - page (1%)
+    - page (80%)
+    - serveur (90%)
     - si connecté (0%)
-    - modification profil (0%)
+    - modification profil (90%)

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="titre">
+    <h1 class="police">Modification compte</h1>
+</div>
+<div class="menu">
+    
+    <form action="{{ url_for('modifierP', id=profil.mail)}}" method="POST">
+        <div class="flex milieu">
+            <div class="gauche">
+                <p class="police">Nouvelle photo<br/>
+                    <img class="pp" style="margin-top:0.5em;height:8em;width:8em;" src="{{profil.pdp}}"/>
+                    <input class="pp" type="hidden" name="pp" value="{{profil.pdp}}">
+                </p>
+                <div style="width:10em;margin-top:-1em;height:6em; overflow:auto;overflow-y:hidden">
+                    <div style="width: 35em;margin-top:1em;height: 5em;">
+                        <img id="pp1" onclick="imageDeProfil('pp1')" class="image" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                        <img id="pp2" onclick="imageDeProfil('pp2')" class="image" src="https://cdn.pixabay.com/photo/2017/05/13/17/31/fruit-2310212_960_720.jpg">
+                        <img id="pp3" onclick="imageDeProfil('pp3')" class="image" src="https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png">
+                        <img id="pp4" onclick="imageDeProfil('pp4')" class="image" src="https://cdn.pixabay.com/photo/2019/06/13/13/06/monster-4271569_960_720.png">
+                        <img id="pp5" onclick="imageDeProfil('pp5')" class="image" src="https://cdn.pixabay.com/photo/2021/03/31/03/12/cat-6138366_960_720.jpg">
+                        <img id="pp6" onclick="imageDeProfil('pp6')" class="image" src="https://cdn.pixabay.com/photo/2016/10/30/18/01/apple-1783882_960_720.png">
+                        <img id="pp7" onclick="imageDeProfil('pp7')" class="image" src="https://cdn.pixabay.com/photo/2022/09/13/18/04/art-7452561_960_720.jpg">
+                        <img id="pp8" onclick="imageDeProfil('pp8')" class="image" src="https://cdn.pixabay.com/photo/2022/08/03/08/57/van-gogh-7362188_960_720.jpg">
+                        <img id="pp9" onclick="imageDeProfil('pp9')" class="image" src="https://cdn.pixabay.com/photo/2018/05/01/07/47/animal-3364909_960_720.png">
+                    </div>
+                </div>
+            </div>
+            <div style="border:1px solid black"></div>
+            <div class="droite" style="margin-top:4em">
+                <!-- <p class="police">Nouveau mail <br/><input type="text" style="width:15em;text-align:center;" value="{{profil.mail}}"/></p> -->
+                <p class="police">Nouveau nom <br/><input type="text" style="width:15em;text-align:center;" name="nom" value="{{profil.nom}}"/></p>
+                <p class="police">Nouveau prenom <br/><input type="text" style="width:15em;text-align:center;" name="prenom" value="{{profil.prenom}}"/></p>
+            </div>
+        </div>
+        <br/>
+        <input class="button" type="submit" value="Modifier mon profil"/>
+    </form>
+</div>
+{% endblock %}

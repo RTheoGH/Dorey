@@ -142,12 +142,59 @@ def ajoutTab(id):
 
 @app.route("/liste")
 def liste():
+    title="Ma liste"
     liste_de_utilisateur = db.session.query(Tableau).join(Liste).filter(Liste.cleTableau == Tableau.idT).filter(Liste.cleUtilisateur == session['mail']).all()
-    return render_template("liste.html",tab=liste_de_utilisateur)
+    return render_template("liste.html",title=title,page=title,tab=liste_de_utilisateur)
 
 @app.route("/profil")
 def profil():
-    return "pas encore fait"
+    title="Profil"
+    profil = db.session.query(Utilisateur).filter(Utilisateur.mail == session['mail']).first()
+    return render_template("profil.html",title=title,page=title,profil=profil)
+
+@app.route("/modifier-profil/<string:id>", methods=['GET','POST'])
+def modifierP(id):
+    title="ModificationP"
+
+    if request.method == 'POST':
+        nouveau_nom = request.form['nom']
+        nouveau_prenom = request.form['prenom']
+        nouvelle_pdp = request.form['pp']
+
+        modification = Utilisateur.query.get_or_404(id)
+        modification.nom = nouveau_nom
+        session['nom'] = nouveau_nom
+        modification.prenom = nouveau_prenom
+        session['prenom'] = nouveau_prenom
+        modification.pdp = nouvelle_pdp
+        session['image'] = nouvelle_pdp
+        db.session.commit()
+        flash("Profil modifié")
+        return redirect("/profil")
+    else:
+        utilisateur_a_modifier = db.session.query(Utilisateur).filter(Utilisateur.mail == id).first()
+        return render_template("modifierP.html",title=title,page=title,profil=utilisateur_a_modifier)
+
+@app.route("/modifier-mdp/<string:id>", methods=['GET','POST'])
+def modifierMDP(id):
+    title="ModificationMDP"
+
+    if request.method == 'POST':
+        ancien_mdp = request.form['ancien_mdp']
+        nouveau_mdp = request.form['nouveau_mdp']
+
+        modification = Utilisateur.query.get_or_404(id)
+        if ancien_mdp == modification.mdp:
+            modification.mdp = nouveau_mdp
+            db.session.commit()
+            flash("Mot de passe modifié")
+            return redirect("/profil")
+        else:
+            flash("Mot de passe invalide")
+            return redirect("/profil")
+    else:
+        utilisateur_a_modifier = db.session.query(Utilisateur).filter(Utilisateur.mail == id).first()
+        return render_template("modifierMDP.html",title=title,page=title,profil=utilisateur_a_modifier)
 
 @app.route("/contact")
 def contact():
