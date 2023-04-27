@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from werkzeug.security import generate_password_hash,check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
@@ -64,7 +65,8 @@ def connexion():
         if connexion_utilisateur is None:
             flash('Adresse mail invalide')
             return redirect("/connexion")
-        if connexion_utilisateur.mdp == request.form['mdp']:
+            check_password_hash(connexion_utilisateur.mdp,request.form['mdp'])
+        if check_password_hash(connexion_utilisateur.mdp,request.form['mdp']):
             session['mail'] = request.form['mail']
             session['nom'] = connexion_utilisateur.nom
             session['prenom'] = connexion_utilisateur.prenom
@@ -80,12 +82,15 @@ def connexion():
 
 @app.route("/deconnexion")
 def deconnexion():
+    if 'mail' not in session :
+        flash("Connectez vous pour accéder à cette page")
+        return redirect("/connexion")
     session.pop('mail',None)
     return redirect('/')
 
 @app.route("/inscription", methods=['GET','POST'])
 def inscription():
-    title="Nouveau compte"
+    title="Inscription"
 
     if request.method == 'POST':
         mail = request.form['mail']
@@ -95,7 +100,11 @@ def inscription():
         pdp = request.form['pp']
         print(pdp)
         # print(mail,nom,prenom,mdp)
-        nouveau_utilisateur = Utilisateur(mail=mail,nom=nom,prenom=prenom,mdp=mdp,pdp=pdp)
+        nouveau_utilisateur = Utilisateur(mail=mail,\
+            nom=nom,\
+            prenom=prenom,\
+            mdp=generate_password_hash(mdp, method='pbkdf2:sha256', salt_length=16),\
+            pdp=pdp)
 
         try:
             db.session.add(nouveau_utilisateur)
@@ -122,12 +131,15 @@ def listeTableaux():
 
 @app.route("/tableau/<int:id>")
 def tableau(id):
-    title='Gallerie'
+    title='Tableau'
     tabSelect=db.session.query(Tableau).filter(Tableau.idT==id).first()
     return render_template("tableau.html",title=title,page=title,tabS=tabSelect)
 
 @app.route("/ajoutTableau/<int:id>")
 def ajoutTab(id):
+    if 'mail' not in session :
+        flash("Connectez vous pour accéder à cette page")
+        return redirect("/connexion")
     tableau_a_ajouter = db.session.query(Tableau).filter(Tableau.idT == id).first()
     print(tableau_a_ajouter.idT)
 
@@ -142,18 +154,27 @@ def ajoutTab(id):
 
 @app.route("/liste")
 def liste():
+    if 'mail' not in session :
+        flash("Connectez vous pour accéder à cette page")
+        return redirect("/connexion")
     title="Ma liste"
     liste_de_utilisateur = db.session.query(Tableau).join(Liste).filter(Liste.cleTableau == Tableau.idT).filter(Liste.cleUtilisateur == session['mail']).all()
     return render_template("liste.html",title=title,page=title,tab=liste_de_utilisateur)
 
 @app.route("/profil")
 def profil():
+    if 'mail' not in session :
+        flash("Connectez vous pour accéder à cette page")
+        return redirect("/connexion")
     title="Profil"
     profil = db.session.query(Utilisateur).filter(Utilisateur.mail == session['mail']).first()
     return render_template("profil.html",title=title,page=title,profil=profil)
 
 @app.route("/modifier-profil/<string:id>", methods=['GET','POST'])
 def modifierP(id):
+    if 'mail' not in session :
+        flash("Connectez vous pour accéder à cette page")
+        return redirect("/connexion")
     title="ModificationP"
 
     if request.method == 'POST':
@@ -177,6 +198,9 @@ def modifierP(id):
 
 @app.route("/modifier-mdp/<string:id>", methods=['GET','POST'])
 def modifierMDP(id):
+    if 'mail' not in session :
+        flash("Connectez vous pour accéder à cette page")
+        return redirect("/connexion")
     title="ModificationMDP"
 
     if request.method == 'POST':
@@ -184,8 +208,8 @@ def modifierMDP(id):
         nouveau_mdp = request.form['nouveau_mdp']
 
         modification = Utilisateur.query.get_or_404(id)
-        if ancien_mdp == modification.mdp:
-            modification.mdp = nouveau_mdp
+        if check_password_hash(modification.mdp,ancien_mdp):
+            modification.mdp = generate_password_hash(nouveau_mdp, method='pbkdf2:sha256', salt_length=16)
             db.session.commit()
             flash("Mot de passe modifié")
             return redirect("/profil")

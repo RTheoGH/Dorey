@@ -1,28 +1,18 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="titre">
-    <h1 class="police">Ma liste</h1>
-</div>
-{% if session['mail'] %}
-    <div class="flex miniProfil">
-        <div>
-            <img class="pp" style="width:4em;height:4em;" src="{{session['image']}}"/>
-        </div>
-        <div style="margin-top:-7px;margin-left:10px;">
-            <p class="police">{{session['nom']}}</p>
-            <p class="police" style="margin-top:-10px;">{{session['prenom']}}</p>
-        </div>
-    </div>
-{% endif %}
 <div class="gallerie">
-    <div class="grid">
-        {% for tableau in tab %}
-        <div class="tableau">
-            <p class="goldShadow nomTableau police">{{tableau.nomT}}</p>
-            <a href="/tableau/{{tableau.idT}}"><img class="encadre" src={{tableau.imageT}}></a>
+    {% if tab == [] %}
+        <p class="police">Ajoutez vos tableaux préférés ici !</p>
+    {% else %}
+        <div class="grid">
+            {% for tableau in tab %}
+            <div class="tableau">
+                <p class="goldShadow nomTableau police">{{tableau.nomT}}</p>
+                <a href="/tableau/{{tableau.idT}}"><img class="encadre" src={{tableau.imageT}}></a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
+    {% endif %}
 </div>
 {% endblock %}

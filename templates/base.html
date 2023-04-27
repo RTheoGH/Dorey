@@ -10,19 +10,36 @@
     <link href="/static/style.css" rel="stylesheet">
     <link href="/static/navigation.css" rel="stylesheet">
     <script src="/static/scripts.js"></script>
+    <link rel="icon" type="image/png" href="static/arts.png"/>
     <title>{{title}}</title>
 </head>
 
 <body>
     <nav>
         <ul>
-            <li><a class="police {% if page=='Accueil' or page=='Connexion' or page=='Nouveau compte' %} active {% endif %}" href="/">Accueil</a></li>
+            <li><a class="police {% if page=='Accueil' or page=='Connexion' or page=='Inscription' %} active {% endif %}" href="/">Accueil</a></li>
             <li><a class="police {% if page=='Gallerie' %} active {% endif %}" href="/listeTableaux">Gallerie</a></li>
-            <li><a class="police {% if page=='Ma liste' %} active {% endif %}" href="/liste">Ma liste</a></li>
-            <li><a class="police {% if page=='Profil' or page=='ModificationP' or page=='ModificationMDP' %} active {% endif %}" href="/profil">Profil</a></li>
+            {% if session['mail'] %}
+                <li><a class="police {% if page=='Ma liste' %} active {% endif %}" href="/liste">Ma liste</a></li>
+                <li><a class="police {% if page=='Profil' or page=='ModificationP' or page=='ModificationMDP' %} active {% endif %}" href="/profil">Profil</a></li>
+            {% endif %}
             <li><a class="police {% if page=='Contact' %} active {% endif %}" href="/contact">Contact</a></li>
         </ul>
     </nav>
+    <div class="titre">
+        <h1 class="police">{{title}}</h1>
+    </div>
+    {% if session['mail'] and title not in ['Accueil','Connexion','Inscription','Profil','ModificationP','ModificationMDP'] %}
+        <div class="flex miniProfil">
+            <div>
+                <img class="pp" style="width:4em;height:4em;" src="{{session['image']}}"/>
+            </div>
+            <div style="margin-top:-7px;margin-left:10px;">
+                <p class="police">{{session['nom']}}</p>
+                <p class="police" style="margin-top:-10px;">{{session['prenom']}}</p>
+            </div>
+        </div>
+    {% endif %}
     {% block main %}
     {% endblock %}
 </body>

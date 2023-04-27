@@ -1,30 +1,16 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="titre">
-    <h1 class="police">Contact</h1>
-</div>
-{% if session['mail'] %}
-    <div class="flex miniProfil">
-        <div>
-            <img class="pp" style="width:4em;height:4em;" src="{{session['image']}}"/>
-        </div>
-        <div style="margin-top:-7px;margin-left:10px;">
-            <p class="police">{{session['nom']}}</p>
-            <p class="police" style="margin-top:-10px;">{{session['prenom']}}</p>
-        </div>
-    </div>
-{% endif %}
 <div class="menu">
     <div class="flex milieu">
         <div class="gauche">
             <h1 class="police">Reynier Hélène</h1>
-            <p style="text-align: center;">coordonnée</p>
-            <p style="text-align: center;">coordonnée</p>
-            <p style="text-align: center;">coordonnée</p>
-            <p style="text-align: center;">coordonnée</p>
-            <p style="text-align: center;">coordonnée</p>
-            <p style="text-align: center;">coordonnée</p>
+            <p class="police">Passionée de peinture <br/>Je pratique la peinture depuis maintenant plus de 6 ans,<br/> je partage ma passion avec vous !</p>
+            <br/><br/>
+            <p style="text-align:left;">Téléphone : 06 48 13 93 96 
+                <br/>Mail : helene.reynier23@gmail.com 
+                <br/>Instagram : <a href="https://www.instagram.com/ghisl.elen_/">ghisl.elen_</a>
+            </p>
         </div>
         <div style="border:1px solid black;margin:.5em;"></div>  
         <div class="droite">

@@ -6,14 +6,23 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
 ## Prochainement :
-- profil en haut à gauche sur les autres pages ? (50%)
+- profil en haut à gauche sur les autres pages ? (100%)
 - liste d'envie :
-    - page (75%)
-    - si connecté : peut ajouter à sa liste (0%)
+    - page (100%)
+    - si connecté : peut ajouter à sa liste (100%)
     - active (100%)
-- sécurisation mot de passe (werkzeug) (0%)
+    - retirer un tableau de sa liste (0%)
+- sécurisation mot de passe (werkzeug) (100%)
+- sécuriter page (100%)
+- icone (100%)
 - page de profil :
-    - page (80%)
-    - serveur (90%)
-    - si connecté (0%)
-    - modification profil (90%)
+    - page (100%)
+    - serveur (100%)
+    - si connecté (100%)
+    - modification profil (100%)
+- Page contact (100%)
+
+
+
+## Références :
+Icone du site : https://www.flaticon.com/fr/icones-gratuites/peindre
