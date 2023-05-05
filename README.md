@@ -11,8 +11,11 @@
     - page (100%)
     - si connecté : peut ajouter à sa liste (100%)
     - active (100%)
+    - empecher de pouvoir ajouter (0%)
     - retirer un tableau de sa liste (0%)
-- sécurisation mot de passe (werkzeug) (100%)
+- gallerie :
+    - empecher de retirer un tableau (0%)
+- sécurisation mot de passe (100%)
 - sécuriter page (100%)
 - icone (100%)
 - page de profil :

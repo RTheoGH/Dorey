@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projet.db'
 db.init_app(app)
 
 class Tableau(db.Model):
+    """Cette classe recense tous les tableaux qui ont été ajouté au site"""
     idT = db.Column(db.Integer,primary_key=True)
     imageT = db.Column(db.String(30))
     nomT = db.Column(db.String(50))
@@ -18,7 +19,9 @@ class Tableau(db.Model):
     def __repr__(t):
         return 'Tableau %r'% t.idT
 
+
 class Utilisateur(db.Model):
+    """Cette classe recense tous les utilisateurs qui ont créé un compte"""
     mail = db.Column(db.String(40),primary_key=True)
     nom = db.Column(db.String(30))
     prenom = db.Column(db.String(30))
@@ -29,6 +32,7 @@ class Utilisateur(db.Model):
         return 'Utilisateur %r'% t.idU
 
 class Liste(db.Model):
+    """Cette classe permet de crée un lien entre la classe Tableau et Utilisateur"""
     cleUtilisateur = db.Column(db.String(40),db.ForeignKey(Utilisateur.mail),primary_key=True)
     cleTableau = db.Column(db.Integer,db.ForeignKey(Tableau.idT),primary_key=True)
 
@@ -53,100 +57,124 @@ class Liste(db.Model):
 
 @app.route("/")
 def index():
+    """
+    La fonction index dirige vers la page d'accueil.
+    """
+
     title='Accueil'
     return render_template("index.html",title=title,page=title)
 
 @app.route("/connexion", methods=['GET','POST'])
 def connexion():
-    title='Connexion'
+    """
+    La fonction connexion redirige vers la page d'accueil, un utilisateur peut alors se connecter.
+    """
 
+    title='Connexion'
     if request.method == 'POST':
         connexion_utilisateur = db.session.query(Utilisateur).filter(Utilisateur.mail == request.form['mail']).first()
-        if connexion_utilisateur is None:
-            flash('Adresse mail invalide')
-            return redirect("/connexion")
-            check_password_hash(connexion_utilisateur.mdp,request.form['mdp'])
-        if check_password_hash(connexion_utilisateur.mdp,request.form['mdp']):
+        if connexion_utilisateur is None:      # Si on ne trouve pas d'utilisateur correspondant.
+            flash('Adresse mail invalide')     # On envoie un message d'erreur.
+            return redirect("/connexion")      # On le redirige sur la même page.
+        if check_password_hash(connexion_utilisateur.mdp,request.form['mdp']):  # Vérifie si le mot de passe entré correspond au mot de passe de l'utilisateur.
             session['mail'] = request.form['mail']
-            session['nom'] = connexion_utilisateur.nom
+            session['nom'] = connexion_utilisateur.nom           # On attribue les valeurs dans la session.
             session['prenom'] = connexion_utilisateur.prenom
             session['image'] = connexion_utilisateur.pdp
-            print("hein")
-        else:
-            flash('Mot de passe incorrect')          
-            return redirect('/connexion') 
-        print("uwu ?")
-        return redirect('/')              
+        else:                                  # Si ce n'est pas le cas.
+            flash('Mot de passe incorrect')    # On envoie un message d'erreur.       
+            return redirect('/connexion')      # On le redirige sur la même page.
+        return redirect('/')              # Connexion réussie
     else:
-        return render_template("connexion.html",title=title,page=title)
+        return render_template("utilisateur/connexion.html",title=title,page=title)
 
 @app.route("/deconnexion")
 def deconnexion():
-    if 'mail' not in session :
+    """
+    La fonction deconnexion permet la deconnexion d'un utilisateur grâce à la méthode pop().
+    """
+
+    if 'mail' not in session :                # Sécurité connexion : empêche un utilisateur non connecté d'accéder à la page.
         flash("Connectez vous pour accéder à cette page")
         return redirect("/connexion")
     session.pop('mail',None)
+    session.pop('nom',None)
+    session.pop('prenom',None)
+    session.pop('image',None)
     return redirect('/')
 
 @app.route("/inscription", methods=['GET','POST'])
 def inscription():
-    title="Inscription"
+    """
+    La fonction inscription permet la création de compte utilisateur, l'utilisateur pourra alors se connecter.
+    """
 
+    title="Inscription"
     if request.method == 'POST':
-        mail = request.form['mail']
+        mail = request.form['mail']                 # On récupère chaque valeur du formulaire.
         nom = request.form['nom']
         prenom = request.form['prenom']
         mdp = request.form['mdp']
         pdp = request.form['pp']
-        print(pdp)
-        # print(mail,nom,prenom,mdp)
-        nouveau_utilisateur = Utilisateur(mail=mail,\
-            nom=nom,\
-            prenom=prenom,\
-            mdp=generate_password_hash(mdp, method='pbkdf2:sha256', salt_length=16),\
-            pdp=pdp)
+        # print(mail,nom,prenom,mdp,pdp)            # On crée une variable "nouveau_utilisateur" contenant les valeurs.
+        nouveau_utilisateur = Utilisateur(mail=mail,nom=nom,prenom=prenom,\
+            mdp=generate_password_hash(mdp, method='pbkdf2:sha256', salt_length=16),pdp=pdp)
 
         try:
-            db.session.add(nouveau_utilisateur)
+            db.session.add(nouveau_utilisateur)         # On ajoute la variable dans la base de donnée.
             db.session.commit()
             print("L'utilisateur a été ajouté avec succès")
             return redirect("/")
         except:
             return 'Erreur lors de l\'ajout de l\'utilisateur'
     else:
-        return render_template("inscription.html",title=title,page=title)
+        return render_template("utilisateur/inscription.html",title=title,page=title)
 
 @app.route("/test")
 def test():
+    """
+    Temporaire (a modifier ou supprimer)
+    """
+
     title='ADMIN'
     tous_les_utilisateurs = db.session.query(Utilisateur).all()
     return render_template("test.html",title=title,page=title,utilisateurs=tous_les_utilisateurs)
 
 @app.route("/listeTableaux")
 def listeTableaux():
+    """
+    La fonction listeTableaux permet d'acceder à une route avec une gallerie de tableaux.
+    """
+
     title='Gallerie'
-    tableaux=db.session.query(Tableau).all()
-    print(tableaux)
-    return render_template("lTab.html",title=title,page=title,tab=tableaux)
+    tableaux=db.session.query(Tableau).all() # On récupère chaque tableau.
+    return render_template("art/lTab.html",title=title,page=title,tab=tableaux)
 
 @app.route("/tableau/<int:id>")
 def tableau(id):
+    """
+    La fonction tableau permet de consulter les informations d'un tableau en cliquant sur celui-ci.
+    """
+
     title='Tableau'
-    tabSelect=db.session.query(Tableau).filter(Tableau.idT==id).first()
-    return render_template("tableau.html",title=title,page=title,tabS=tabSelect)
+    tabSelect=db.session.query(Tableau).filter(Tableau.idT==id).first()    # Récupération du tableau cliqué.
+    return render_template("art/tableau.html",title=title,page=title,tabS=tabSelect)
 
 @app.route("/ajoutTableau/<int:id>")
 def ajoutTab(id):
+    """
+    La fonction ajoutTab permet d'ajouter un tableau à sa liste d'envie.
+    """
+
     if 'mail' not in session :
         flash("Connectez vous pour accéder à cette page")
         return redirect("/connexion")
-    tableau_a_ajouter = db.session.query(Tableau).filter(Tableau.idT == id).first()
-    print(tableau_a_ajouter.idT)
+    tableau_a_ajouter = db.session.query(Tableau).filter(Tableau.idT == id).first()     # On récupère le tableau.
+    # print(tableau_a_ajouter.idT)
 
     try:
-        db.session.add(Liste(cleUtilisateur=session['mail'],cleTableau=tableau_a_ajouter.idT))
+        db.session.add(Liste(cleUtilisateur=session['mail'],cleTableau=tableau_a_ajouter.idT)) # On crée un lien utilisateur-tableau.
         db.session.commit()
-        print("wa")
         return redirect("/liste")
     except:
         flash("Tableau déjà dans votre liste")
@@ -154,35 +182,47 @@ def ajoutTab(id):
 
 @app.route("/liste")
 def liste():
+    """
+    La fonction liste permet d'afficher tous les tableaux qui ont été ajouté par un utilisateur dans sa liste d'envie.
+    """
+
     if 'mail' not in session :
         flash("Connectez vous pour accéder à cette page")
         return redirect("/connexion")
-    title="Ma liste"
+    title="Ma liste"                                  # On affiche les tableaux que l'utilisateur a ajouté à sa liste.
     liste_de_utilisateur = db.session.query(Tableau).join(Liste).filter(Liste.cleTableau == Tableau.idT).filter(Liste.cleUtilisateur == session['mail']).all()
-    return render_template("liste.html",title=title,page=title,tab=liste_de_utilisateur)
+    return render_template("utilisateur/liste.html",title=title,page=title,tab=liste_de_utilisateur)
 
 @app.route("/profil")
 def profil():
+    """
+    La fonction profil permet de consulter le profil de l'utilisateur, il peut aussi modifier son profil ou son mot de passe.
+    """
+
     if 'mail' not in session :
         flash("Connectez vous pour accéder à cette page")
         return redirect("/connexion")
-    title="Profil"
+    title="Profil"                 # On affiche le profil de l'utilisateur connecté.
     profil = db.session.query(Utilisateur).filter(Utilisateur.mail == session['mail']).first()
-    return render_template("profil.html",title=title,page=title,profil=profil)
+    return render_template("utilisateur/profil.html",title=title,page=title,profil=profil)
 
 @app.route("/modifier-profil/<string:id>", methods=['GET','POST'])
 def modifierP(id):
+    """
+    La fonction modifierP permet d'acceder à la page permettant de modifier son profil.
+    """
+
     if 'mail' not in session :
         flash("Connectez vous pour accéder à cette page")
         return redirect("/connexion")
     title="ModificationP"
 
     if request.method == 'POST':
-        nouveau_nom = request.form['nom']
+        nouveau_nom = request.form['nom']                     # Récupération des nouvelles valeurs.
         nouveau_prenom = request.form['prenom']
         nouvelle_pdp = request.form['pp']
 
-        modification = Utilisateur.query.get_or_404(id)
+        modification = Utilisateur.query.get_or_404(id)       # Attribution des nouvelles valeurs.
         modification.nom = nouveau_nom
         session['nom'] = nouveau_nom
         modification.prenom = nouveau_prenom
@@ -192,36 +232,44 @@ def modifierP(id):
         db.session.commit()
         flash("Profil modifié")
         return redirect("/profil")
-    else:
+    else:                                       # affichage des informations de l'utilisateur.
         utilisateur_a_modifier = db.session.query(Utilisateur).filter(Utilisateur.mail == id).first()
-        return render_template("modifierP.html",title=title,page=title,profil=utilisateur_a_modifier)
+        return render_template("utilisateur/modifierP.html",title=title,page=title,profil=utilisateur_a_modifier)
 
 @app.route("/modifier-mdp/<string:id>", methods=['GET','POST'])
 def modifierMDP(id):
+    """
+    La fonction modifierMDP permet d'acceder à la page permettant de modifier son mot de passe.
+    """
+
     if 'mail' not in session :
         flash("Connectez vous pour accéder à cette page")
         return redirect("/connexion")
     title="ModificationMDP"
 
-    if request.method == 'POST':
+    if request.method == 'POST':                   # Récupération des valeurs
         ancien_mdp = request.form['ancien_mdp']
         nouveau_mdp = request.form['nouveau_mdp']
 
         modification = Utilisateur.query.get_or_404(id)
-        if check_password_hash(modification.mdp,ancien_mdp):
-            modification.mdp = generate_password_hash(nouveau_mdp, method='pbkdf2:sha256', salt_length=16)
+        if check_password_hash(modification.mdp,ancien_mdp): # vérifie si le mot de passe écrit correspond
+            modification.mdp = generate_password_hash(nouveau_mdp, method='pbkdf2:sha256', salt_length=16) # Si oui on modifie.
             db.session.commit()
             flash("Mot de passe modifié")
             return redirect("/profil")
         else:
             flash("Mot de passe invalide")
             return redirect("/profil")
-    else:
+    else:                                        # affichage des informations de l'utilisateur.
         utilisateur_a_modifier = db.session.query(Utilisateur).filter(Utilisateur.mail == id).first()
-        return render_template("modifierMDP.html",title=title,page=title,profil=utilisateur_a_modifier)
+        return render_template("utilisateur/modifierMDP.html",title=title,page=title,profil=utilisateur_a_modifier)
 
 @app.route("/contact")
 def contact():
+    """
+    La fonction contact permet de consulter les informations du peintre.
+    """
+
     title='Contact'
     return render_template("contact.html",title=title,page=title)
 
